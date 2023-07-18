@@ -16,7 +16,7 @@
 </a>
 </p>
    
-An easy-to-use online application, this project enables users to log in, register, and maintain their personal data. Users also have the option of posting and viewing posts made by other users. Tokens used for authentication are used by the programme to protect user information and guarantee that only authorised users may access particular functionalities.
+An easy-to-use online application, this project enables employee add, delete, and maintain their personal data. Users also have the option of posting and viewing posts made by other users. Tokens used for authentication are used by the programme to protect user information and guarantee that only authorised users may access particular functionalities.
 
 ---
 <br>
@@ -68,7 +68,7 @@ spring.jpa.properties.hibernate.format_sql=true
 The Job data model is defined in the Job class, which has the following attributes:
 <br>
 
-* User Model
+* Employee Model
 ```
 Id : integer
 firstName : string
@@ -82,63 +82,14 @@ phoneNumber : string
 isBlueTicked : boolean
 ```
 
-* PostLike Model
+* Address Model
 ```
 Id : Long
 post : Post(ManyToOne)
 User : user(ManyToOne)
 ```
 
-* Post Model
-```
-postId = Integer
-createdDate : LocalDateTime
-postData : String
-postCaption : string
-location : string
-@ManyToOne
-user : User
-```
 
-* InstagramFollowing Model
-```
-followingTableId = Long
-user : User (OneToOne)
-following : User (OneToOne)
-```
-
-* InstagramFollower Model
-```
-followerTableId = Long
-user : User (OneToOne)
-follower : User (OneToOne)
-```
-
-* InstagramComment Model
-```
-commentId = Long
-commentBody : String
-post : Post(ManyToOne)
-user : User (ManyToOne)
-```
-
-* Authentication Token 
-```
-tokenId : Long
-token : string
-tokenCreationDate : LocalDate
-@OneToOne 
-user : User
-```
-
-* Admin Token 
-```
-adminId : Long
-firstName : string
-lastName : string
-email : string
-
-```
 ## Data Flow
 
 1. The user at client side sends a request to the application through the API endpoints.
@@ -157,31 +108,19 @@ email : string
 
 The following endpoints are available in the API:
 
-* User Controller:
+* Employee Controller:
 ```
-POST /user/signup: create a new user account
-POST /user/signin: authenticate a user and receive an authentication token
-PUT /user: update user details
-DELETE /user/signout: authenticate a user and delete authentication token
-POST /user/like - like the post
-POST //follow/{myId}/{otherId} - to follow the user
+POST /employee/: create a new empluyee 
+PUT /user: update employee details
+DELETE /employeeById
+
 ```
 
-* Post Controller
+* Address Controller
 ```
-POST /post: create a new post
-GET /post: get all posts
-GET /{postId}/likeCount : get likeCount based on postId.
-```
-
-* Admin Controller
-```
-PUT /user/{id}/{blueTick}: update the blue ticket
-```
-
-* Comment Controller
-```
-POST /comment: post the comment
+POST /address/: create a new address 
+PUT /address: update adrress details
+DELETE /addressById
 ```
 
 <br>
